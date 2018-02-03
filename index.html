@@ -304,7 +304,7 @@
         </ul>
       </div>
       <button onclick="myFunction()">Click me</button>
-      <p id="demo"></p>
+      <div id="demo"></div>
     </section>
   </div>
 
@@ -319,7 +319,33 @@
   <script src="js/resume.min.js"></script>
   <script>
     function myFunction() {
-    alert('Hello');
+      var html = '';
+
+      var client = new HttpClient();
+      client.get('https://tsn-service.herokuapp.com/api/news', function (response) {
+        // do something with response
+        var res = JSON.parse(response);
+        if (res.length > 0) {
+          for (var i = 0; i > res.length; i++) {
+            html += '<p>' + res[i].name + '</p> <p>' + res[i].detail + '</p> <img src="' + res[i].image + '">';
+            console.log(res[i].name);
+          }
+          console.log(res);
+          document.getElementById('demo').innerHTML = res;
+        }
+      });
+    }
+    var HttpClient = function () {
+      this.get = function (aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function () {
+          if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+            aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open("GET", aUrl, true);
+        anHttpRequest.send(null);
+      }
     }
   </script>
 </body>
