@@ -330,6 +330,7 @@
       //var events = [];
       for (var j = 0; j < numEvents; j++) {
         news.innerHTML = news.innerHTML + "<br>" + "<h3>หัวข้อ " + data[j].name + "</h3>";
+        news.innerHTML = news.innerHTML + "<img style='width: 250px; height: 250px; object-fit:cover;' src='" + data[j].image + "'>";
         news.innerHTML = news.innerHTML + "<p>" + "รายละเอียด: " + data[j].detail + "</p>";
       }
     });
