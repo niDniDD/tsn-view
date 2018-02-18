@@ -66,16 +66,20 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
       <div class="my-auto">
-        <h1 class="mb-0">ข่าวสาร
+        <!-- <h2 class="mb-0">ข่าวสาร
           <span class="text-primary">และกิจกรรม</span>
-        </h1>
-        <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
+        </h2> -->
+        <!-- <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
           <a href="mailto:name@email.com">name@email.com</a>
-        </div>
-        <p class="mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative
-          approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p>
+        </div> -->
+        <!-- <p class="mb-5">I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative
+          approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</p> -->
+
+        <div style="text-align: center" id="loader"></div>
+
         <div id="news"></div>
-        <ul class="list-inline list-social-icons mb-0">
+
+        <!-- <ul class="list-inline list-social-icons mb-0">
           <li class="list-inline-item">
             <a href="#">
               <span class="fa-stack fa-lg">
@@ -108,7 +112,7 @@
               </span>
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </section>
 
@@ -272,12 +276,13 @@
 
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
       <div class="my-auto">
-        <h2 class="mb-5">ทีม</h2>
-        <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skiier and
+        <!-- <h2 class="mb-5">ทีม</h2> -->
+        <div id="team"></div>
+        <!-- <p>Apart from being a web developer, I enjoy most of my time being outdoors. In the winter, I am an avid skiier and
           novice ice climber. During the warmer months here in Colorado, I enjoy mountain biking, free climbing, and kayaking.</p>
         <p class="mb-0">When forced indoors, I follow a number of sci-fi and fantasy genre movies and television shows, I am an aspiring
           chef, and I spend a large amount of my free time exploring the latest technolgy advancements in the front-end web
-          development world.</p>
+          development world.</p> -->
       </div>
     </section>
 
@@ -308,6 +313,7 @@
       </div>
       <!-- <button onclick="myFunction()">Click me</button>
       <div id="demo"></div> -->
+      <!-- <div class="loader"></div> -->
     </section>
   </div>
 
@@ -320,21 +326,152 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/resume.min.js"></script>
+  <style>
+    #loader {
+      position: absolute;
+      left: 55%;
+      /* top: 50%; */
+      z-index: 1;
+      width: 150px;
+      height: 150px;
+      margin: -75px 0 0 -75px;
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #bd5d38;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Add animation to "page content" */
+
+    .animate-bottom {
+      position: relative;
+      -webkit-animation-name: animatebottom;
+      -webkit-animation-duration: 1s;
+      animation-name: animatebottom;
+      animation-duration: 1s
+    }
+
+    @-webkit-keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0px;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatebottom {
+      from {
+        bottom: -100px;
+        opacity: 0
+      }
+      to {
+        bottom: 0;
+        opacity: 1
+      }
+    }
+  </style>
+  <style>
+    .tooltip {
+      position: relative;
+      display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+      visibility: hidden;
+      width: 140px;
+      background-color: #555;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px;
+      position: absolute;
+      z-index: 1;
+      bottom: 150%;
+      left: 50%;
+      margin-left: -75px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .tooltip .tooltiptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555 transparent transparent transparent;
+    }
+
+    .tooltip:hover .tooltiptext {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
   <script>
     // function myFunction() {
-    var url = 'https://tsn-service.herokuapp.com/api/news';
+    var url = 'https://tsn-service.herokuapp.com/api/homes';
     httpGetAsync(url, function (data) {
-      var numEvents = Object.keys(data).length;
+      var numEvents = Object.keys(data.news).length;
+      console.log(numEvents);
       var news = document.getElementById('news');
+      var team = document.getElementById('team');
       // op.innerHTML = op.innerHTML + "  <br><br> <h2>---NEXT ARTIST---<h2>  <br>";
       //var events = [];
+      news.innerHTML = "<h2 class='mb-0'>ข่าวสาร<span class='text-primary'>และกิจกรรม</span></h2>";
       for (var j = 0; j < numEvents; j++) {
-        news.innerHTML = news.innerHTML + "<br>" + "<h3>หัวข้อ " + data[j].name + "</h3>";
-        news.innerHTML = news.innerHTML + "<img style='width: 250px; height: 250px; object-fit:cover;' src='" + data[j].image + "'>";
-        news.innerHTML = news.innerHTML + "<p>" + "รายละเอียด: " + data[j].detail + "</p>";
+        news.innerHTML = news.innerHTML + "<br>" + "<h3>หัวข้อ " + data.news[j].name + "</h3>";
+        news.innerHTML = news.innerHTML + "<div style='text-align:center; padding: 20px;'><img style='width: 250px; height: 250px; object-fit:cover;' src='" + data.news[j].image + "'></div>";
+        news.innerHTML = news.innerHTML + "<p>" + "รายละเอียด: " + data.news[j].detail + "</p>";
       }
+      team.innerHTML = "<h2 class='mb-5'>ทีม</h2><ul class='list-inline list-icons'>";
+      for (var t = 0; t < data.teams.length; t++) {
+        team.innerHTML = team.innerHTML + "<li class='list-inline-item' style='text-align:center; padding: 20px;'><img style='width: 200px; height: 200px; object-fit:cover; vertical-align: middle; border-radius: 50%;' src='" + data.teams[t].image + "'><p style='text-align:center; padding-top: 20px; color:gray'>" + data.teams[t].firstname + ' ' + data.teams[t].lastname + " ( " + data.teams[t].nickname + " )</p><p>"
+          + "<span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-phone-square fa-stack-1x fa-inverse' title='" + data.teams[t].tel + "' onclick='myFunction()'><span class='tooltiptext' id='myTooltip'></span></i></span>" +
+          "<input type='text' value='"+data.teams[t].tel+"' id='myInput' style='display:none'>"+
+          "<a style='color:#868e96' href='mailto:" + data.teams[t].email + "'><span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-envelope fa-stack-1x fa-inverse' title='" + data.teams[t].email + "'></i></span></a>" +
+          "<span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-comments fa-stack-1x fa-inverse' title='" + data.teams[t].line + "'></i></span></p></li>";
+        // team.innerHTML = team.innerHTML + "";
+      }
+      team.innerHTML = team.innerHTML + '</ul>'
+      document.getElementById("loader").style.display = "none";
     });
     // }
+
+    function myFunction() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      document.execCommand("Copy");
+
+      var tooltip = document.getElementById("myTooltip");
+      tooltip.innerHTML = "Copied: " + copyText.value;
+    }
+
 
     function httpGetAsync(theUrl, callback) { //theURL or a path to file
       var httpRequest = new XMLHttpRequest();
