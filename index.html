@@ -165,14 +165,12 @@
     </section>
 
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-      <div class="my-auto">
-        <!-- <h2 class="mb-5">Education</h2> -->
+      <!-- <div class="my-auto"> -->
+      <!-- <h2 class="mb-5">Education</h2> -->
 
-        <div class="resume-item d-flex flex-column flex-md-row mb-5">
+      <!-- <div class="resume-item d-flex flex-column flex-md-row mb-5">
           <div class="resume-content mr-auto">
             <h3 class="mb-0">เอกสารที่ต้องใช้ของนายจ้าง</h3>
-            <!-- <div class="subheading mb-3">Bachelor of Science</div> -->
-            <!-- <div>Computer Science - Web Development Track</div> -->
             <p></p>
             <p>1.หนังสือรับรองบริษัทอายุไม่เกิน 3 เดือน 5 ชุด</p>
             <p>2.สำเนาบัตรประชาชน ทะเบียนบ้าน กรรมการ 5 ชุด</p>
@@ -188,7 +186,6 @@
         <div class="resume-item d-flex flex-column flex-md-row">
           <div class="resume-content mr-auto">
             <h3 class="mb-0">เอกสารที่ต้องใช้ของแรงงาน</h3>
-            <!-- <div class="subheading mb-3">Technology Magnet Program</div> -->
             <p></p>
             <p>1.บัตรประชาชนตัวจริง</p>
             <p>2.ทะเบียนบ้านตัวจริง</p>
@@ -204,7 +201,6 @@
             <h3 class="mb-0">ดาวน์โหลดแบบฟอร์ม
               <span class="text-primary">การทำงานของคนต่างด้าว</span>
             </h3>
-            <!-- <div class="subheading mb-3">Technology Magnet Program</div> -->
             <p></p>
             <p>1.บัตรประชาชนตัวจริง</p>
             <p>2.ทะเบียนบ้านตัวจริง</p>
@@ -213,10 +209,10 @@
           <div class="resume-date text-md-right">
             <span class="text-primary">August 2002 - May 2006</span>
           </div>
-        </div>
+        </div> -->
 
-
-      </div>
+      <div id="download"></div>
+      <!-- </div> -->
     </section>
 
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
@@ -441,6 +437,9 @@
       console.log(numEvents);
       var news = document.getElementById('news');
       var team = document.getElementById('team');
+      var download = document.getElementById('download');
+
+      // downloads
       // op.innerHTML = op.innerHTML + "  <br><br> <h2>---NEXT ARTIST---<h2>  <br>";
       //var events = [];
       news.innerHTML = "<h2 class='mb-0'>ข่าวสาร<span class='text-primary'>และกิจกรรม</span></h2>";
@@ -452,13 +451,21 @@
       team.innerHTML = "<h2 class='mb-5'>ทีม</h2><ul class='list-inline list-icons'>";
       for (var t = 0; t < data.teams.length; t++) {
         team.innerHTML = team.innerHTML + "<li class='list-inline-item' style='text-align:center; padding: 20px;'><img style='width: 200px; height: 200px; object-fit:cover; vertical-align: middle; border-radius: 50%;' src='" + data.teams[t].image + "'><p style='text-align:center; padding-top: 20px; color:gray'>" + data.teams[t].firstname + ' ' + data.teams[t].lastname + " ( " + data.teams[t].nickname + " )</p><p>"
-          + "<span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-phone-square fa-stack-1x fa-inverse' title='" + data.teams[t].tel + "' onclick='myFunction()'><span class='tooltiptext' id='myTooltip'></span></i></span>" +
-          "<input type='text' value='"+data.teams[t].tel+"' id='myInput' style='display:none'>"+
+          + "<a style='color:#868e96' href='tel:" + data.teams[t].tel + "' target='_blank'><span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-phone-square fa-stack-1x fa-inverse' title='" + data.teams[t].tel + "' onclick='myFunction()'><span class='tooltiptext' id='myTooltip'></span></i></span></a>" +
+          "<input type='text' value='" + data.teams[t].tel + "' id='myInput' style='display:none'>" +
           "<a style='color:#868e96' href='mailto:" + data.teams[t].email + "'><span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-envelope fa-stack-1x fa-inverse' title='" + data.teams[t].email + "'></i></span></a>" +
-          "<span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-comments fa-stack-1x fa-inverse' title='" + data.teams[t].line + "'></i></span></p></li>";
+          "<a style='color:#868e96' href='https://line.me/R/ti/p/%40" + data.teams[t].line + "' target='_blank'><span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-comments fa-stack-1x fa-inverse' title='" + data.teams[t].line + "'></i></span></p></li></a>";
         // team.innerHTML = team.innerHTML + "";
       }
       team.innerHTML = team.innerHTML + '</ul>'
+      download.innerHTML = "<h2 class='mb-5'>ดาวน์โหลด</h2><ul class='list-inline list-icons'>";
+      for (var d = 0; d < data.downloads.length; d++) {
+        download.innerHTML = download.innerHTML + "<li class='list-inline-item' style='text-align:center; padding: 20px;'><p style='text-align:center; padding-top: 20px; color:gray'>" + data.downloads[d].title + "</p><p>"
+          + "<a style='color:#868e96' href='" + data.downloads[d].url + "' target='_blank'><span class='fa-stack fa-lg'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-download fa-stack-1x fa-inverse' title='" + data.downloads[d].url + "' onclick='myDownload()'><span class='tooltiptext' id='myTooltip'></span></i></span></a>";
+        // team.innerHTML = team.innerHTML + "";
+      }
+      download.innerHTML = download.innerHTML + '</ul>'
+
       document.getElementById("loader").style.display = "none";
     });
     // }
