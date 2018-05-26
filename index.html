@@ -457,13 +457,14 @@
       var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
       var marker = new google.maps.Marker({
         position: {
-          lat:14.204018,
-          lng:100.5933833
+          lat: 14.204018,
+          lng: 100.5933833
         },
         map: map
       });
     }
     var url = 'https://tsn-service.herokuapp.com/api/homes';
+    // var url = 'http://localhost:3000/api/homes';
     httpGetAsync(url, function (data) {
       var numEvents = Object.keys(data.news).length;
       console.log(numEvents);
@@ -478,7 +479,20 @@
       news.innerHTML = "<h2 class='mb-0'>ข่าวสาร<span class='text-primary'>และกิจกรรม</span></h2>";
       for (var j = 0; j < numEvents; j++) {
         news.innerHTML = news.innerHTML + "<br>" + "<h3>หัวข้อ " + data.news[j].name + "</h3>";
-        news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].image + "'><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].image + "'><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].image + "'></tr></div>";
+        // news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr>";
+        // for (var img = 0; img < data.news[j].images.length; img++) {
+        if (data.news[j].images && data.news[j].images[0] && data.news[j].images[1] && data.news[j].images[2]) {
+          news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[0] + "'><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[1] + "'><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[2] + "'></tr></div>";
+        }
+        if (data.news[j].images && data.news[j].images[0] && data.news[j].images[1] && !data.news[j].images[2]) {
+          news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[0] + "'><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[1] + "'></tr></div>";
+        }
+        if (data.news[j].images && data.news[j].images[0] && !data.news[j].images[1] && !data.news[j].images[2]) {
+          news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].images[0] + "'></tr></div>";
+        }
+        if (!data.news[j].images) {
+          news.innerHTML = news.innerHTML + "<div class='mr-auto' style='text-align:center;'><tr><img style='width: 250px; height: 250px; margin-right: 20px; object-fit:cover;' src='" + data.news[j].image + "'></tr></div>";
+        }
         news.innerHTML = news.innerHTML + "<p>" + "รายละเอียด: " + data.news[j].detail + "</p>";
         news.innerHTML = news.innerHTML + "<p class='text-md-right'>" + setFormatTime(data.news[j].created) + "</p>";
       }
