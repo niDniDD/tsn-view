@@ -48,7 +48,7 @@
           <a class="nav-link js-scroll-trigger" href="#experience">ข้อมูลบริการ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#education">ดาวน์โหลด</a>
+          <a class="nav-link js-scroll-trigger" href="#education">เอกสารและดาวน์โหลด</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#skills">ประวัติบริษัท</a>
@@ -168,36 +168,30 @@
     <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
       <!-- <div class="my-auto"> -->
       <!-- <h2 class="mb-5">Education</h2> -->
-
-      <!-- <div class="resume-item d-flex flex-column flex-md-row mb-5">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">เอกสารที่ต้องใช้ของนายจ้าง</h3>
-            <p></p>
-            <p>1.หนังสือรับรองบริษัทอายุไม่เกิน 3 เดือน 5 ชุด</p>
-            <p>2.สำเนาบัตรประชาชน ทะเบียนบ้าน กรรมการ 5 ชุด</p>
-            <p>3.ใบโควตา 5 ชุด</p>
-            <p>4.รูปถ่ายป้ายบริษัท ลักษณะการทำงาน และที่พักคนงาน</p>
-            <p>5.แผนที่บริษัท และสถานที่ทำงาน</p>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">August 2006 - May 2010</span>
-          </div>
+      <h2 class="mb-5">เอกสารและดาวน์โหลด</h2>
+      <div class="resume-item d-flex flex-column flex-md-row mb-5">
+        <div class="resume-content mr-auto">
+          <h3 class="mb-0">เอกสารที่ต้องใช้ของนายจ้าง</h3>
+          <p></p>
+          <p>1.หนังสือรับรองบริษัทอายุไม่เกิน 3 เดือน 5 ชุด</p>
+          <p>2.สำเนาบัตรประชาชน ทะเบียนบ้าน กรรมการ 5 ชุด</p>
+          <p>3.ใบโควตา 5 ชุด</p>
+          <p>4.รูปถ่ายป้ายบริษัท ลักษณะการทำงาน และที่พักคนงาน</p>
+          <p>5.แผนที่บริษัท และสถานที่ทำงาน</p>
         </div>
+      </div>
 
-        <div class="resume-item d-flex flex-column flex-md-row">
-          <div class="resume-content mr-auto">
-            <h3 class="mb-0">เอกสารที่ต้องใช้ของแรงงาน</h3>
-            <p></p>
-            <p>1.บัตรประชาชนตัวจริง</p>
-            <p>2.ทะเบียนบ้านตัวจริง</p>
-            <p>3.พาสปอร์ตเล่มเดิมหรือเอกสารอื่น ๆ ที่ทางไทยออกให้</p>
-          </div>
-          <div class="resume-date text-md-right">
-            <span class="text-primary">August 2002 - May 2006</span>
-          </div>
+      <div class="resume-item d-flex flex-column flex-md-row mb-5">
+        <div class="resume-content mr-auto">
+          <h3 class="mb-0">เอกสารที่ต้องใช้ของแรงงาน</h3>
+          <p></p>
+          <p>1.บัตรประชาชนตัวจริง</p>
+          <p>2.ทะเบียนบ้านตัวจริง</p>
+          <p>3.พาสปอร์ตเล่มเดิมหรือเอกสารอื่น ๆ ที่ทางไทยออกให้</p>
         </div>
+      </div>
 
-        <div class="resume-item d-flex flex-column flex-md-row">
+      <!-- <div class="resume-item d-flex flex-column flex-md-row">
           <div class="resume-content mr-auto">
             <h3 class="mb-0">ดาวน์โหลดแบบฟอร์ม
               <span class="text-primary">การทำงานของคนต่างด้าว</span>
@@ -211,8 +205,9 @@
             <span class="text-primary">August 2002 - May 2006</span>
           </div>
         </div> -->
-
-      <div id="download"></div>
+      <div class="resume-item d-flex flex-column flex-md-row">
+        <div id="download"></div>
+      </div>
       <!-- </div> -->
     </section>
 
@@ -250,8 +245,8 @@
               </ul>
             </td>
             <td>
-              <img class="text-md-right img-fluid  mx-auto mb-2" style="right: 0; max-width: 35rem; max-height: 35rem;"
-                src="img/tsn1.png" alt="">
+              <img class="text-md-right img-fluid  mx-auto mb-2" style="right: 0; max-width: 35rem; max-height: 35rem;" src="img/tsn1.png"
+                alt="">
             </td>
           </tr>
         </table>
@@ -517,7 +512,7 @@
         // team.innerHTML = team.innerHTML + "";
       }
       team.innerHTML = team.innerHTML + '</ul>'
-      download.innerHTML = "<h2 class='mb-5'>ดาวน์โหลด</h2><ul class='list-inline list-icons'>";
+      download.innerHTML = "<h3 class='mb-0'>ดาวน์โหลด</h3><ul class='list-inline list-icons'>";
       for (var d = 0; d < data.downloads.length; d++) {
         // download.innerHTML = download.innerHTML + "<li class='list-inline-item' style='text-align:left; padding: 20px;'><span style='text-align:left; padding-top: 20px; color:gray'>" + data.downloads[d].title + "</span>"
         //   + "<span class='fa-stack fa-lg' style='color:#868e96'><i class='fa fa-circle fa-stack-2x'></i><i class='fa fa-download fa-stack-1x fa-inverse' title='" + data.downloads[d].url + "'  onclick='showFile("+'"' + data.downloads[d].url + '"'+")';'><span class='tooltiptext' id='myTooltip'></span></i></span>";
